@@ -1,8 +1,14 @@
 from django.shortcuts import redirect, render
 from core.forms import TransactionForm
+from core.models import Transaction
 
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'core/home.html')
+
+def allTransactions(request):
+    transactions = Transaction.objects.all()
+    context = {'transactions' : transactions}
+    return render(request, 'core/allTransactions.html', context)
 
 def addTransaction(request):
     if request.method == 'POST':
@@ -10,7 +16,7 @@ def addTransaction(request):
 
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('core/home')
     else:
         form = TransactionForm()
-    return render(request, 'transactionPage.html', {'form': form})
+    return render(request, 'core/transactionPage.html', {'form': form})

@@ -1,0 +1,44 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<main>
+    <div class="container p-5">
+        {% if transactions %}
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-bordered align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Date</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Month Code</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for transaction in transactions %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ transaction.created_at }}</td>
+                        <td>{{ transaction.name }}</td>
+                        <td>{{ transaction.type }}</td>
+                        <td>{{ transaction.month_code }}</td>
+                        <td>₹{{ transaction.amount }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {% else %}
+        <div class="alert alert-info text-center">
+            There are no transactions.
+        </div>
+        {% endif %}
+    </div>
+</main>
+
+{% endblock content %}
