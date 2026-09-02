@@ -1,16 +1,53 @@
 {% extends 'main.html' %}
+
 {% block content %}
-<main>
 
-    <body>
-        <h3>This is the transaction Form</h3>
-        <form method="POST">
-            {% csrf_token %}
+<div class="container mt-4">
+    <div class="card shadow-sm" style="max-width: 450px; margin: auto;">
+        <div class="card-body p-3">
 
-            {{form.as_p}}
-            <button type="submit">Add transaction</button>
-        </form>
-    </body>
-</main>
+            <h5 class="mb-3">Add Transaction</h5>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="mb-2">
+                    <label class="form-label mb-1">Name</label>
+                    {{ form.name }}
+                </div>
+
+                <div class="mb-2">
+                    <label class="form-label mb-1">Description</label>
+                    {{ form.description }}
+                </div>
+
+                <div class="mb-2">
+                    <label class="form-label mb-1">Type</label>
+                    {{ form.type }}
+                </div>
+
+                <div class="mb-2">
+                    <label class="form-label mb-1">Category</label>
+                    {{ form.category }}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label mb-1">Amount</label>
+                    {{ form.amount }}
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-sm">
+                    Add Transaction
+                </button>
+
+                <a href="{% url 'home' %}" class="btn btn-secondary btn-sm">
+                    Cancel
+                </a>
+
+            </form>
+
+        </div>
+    </div>
+</div>
 
 {% endblock content %}

@@ -16,7 +16,7 @@ def addTransaction(request):
 
         if form.is_valid():
             form.save()
-            return redirect('core/home')
+            return redirect('home')
     else:
         form = TransactionForm()
     return render(request, 'core/transactionPage.html', {'form': form})
